@@ -45,17 +45,35 @@
   - ```p``` prints the partition table
   - ```d``` deletes a partition
   - ```w``` write table to disk and exit
-- Create two partition: /mnt/boot partition and /mnt partition. 
-  - First partition (/mnt/boot):
+- Create two partition: /dev/efi_system_partition and /dev/root-partition. 
+  - First partition (/dev/efi_system_partition):
     - Run ```n``` command to add partition. 
     - Set partition type to primary and keep partition number as default (1). 
     - First Sector is set as default (2048).
     - Last Sector should at least be 300 MiB. I used 500 MiB, using the command ```+500M``` (2048 MiB + 500 MiB).
-  - Second partition (/mnt):
+  - Second partition (/dev/root_partition):
     - Run ```n``` command again. 
     - Set partition type to primary. 
     - Partition number, first sector, and last sector are all set to default. 
 - Use command ```p``` to print out your partitions and see if your two partitions were created correctly.  
-  There should be two devices, /dev/sda1 and /dev/sda2.  
+  There should be two devices, /dev/sda1 (first partition) and /dev/sda2 (second partition).  
   If the two partition seems like it was printed correctly, save and exit by running the command ```w```.
-- 
+- To format each partition use ```mkfs.ext4 /dev/root_partition``` and ```mkfs.fat -F 32 /dev/efi_system_partition```.  
+  For example, ```mkfs.ext4 /dev/sda2``` and ```mkfs.fat -F 32 /dev/sda1```. 
+
+### 5. Mounting the file systems. 
+- To mount the root volume, run this command ```mount /dev/root_partition /mnt```.  
+  Use this command ```mount --mkdir /dev/efi_system_partition /mnt/boot```  mount the EFI system partition.  
+  For example, ```mount /dev/sda2 /mnt``` and ``` mount --mkdir /dev/sda1 /mnt/boot```.
+- The command ```lsblk -f``` can be used to check if the partitions were mounted correctly.
+
+### 6. Installing packages
+- Use this command ```pacstrap -K /mnt base linux linux-firmware nano grub dhcpcd efibootmgr sudo``` to install packages you need.  
+  You at least need base package and linux and linux-firmware hardware. 
+  
+### 7. Configuring the system
+- Use ```genfstab -U /mnt >> /mnt/etc/fstab``` command to generate fstab file. 
+- Change the root by running this command ```arch-chroot /mnt```. 
+- Set the time zone by using this command ```ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime```.  
+  Then run this command ```hwclock --systohc```.
+  
