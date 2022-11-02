@@ -76,4 +76,21 @@
 - Change the root by running this command ```arch-chroot /mnt```. 
 - Set the time zone by using this command ```ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime```.  
   Then run this command ```hwclock --systohc```.
-  
+- Edit /etc/locale.gen by running this command ```nano /etc/local.gen``` and uncomment en_US.UTF-8 UTF-8 (remove the #).  
+  To save the file, ctrl + X and press Y and press Enter. 
+- Now run ```locale-gen```.
+- To create the locale.conf file, use the ```touch /etc/locale.conf``` command and ```nano /etc/locale.conf``` to edit the file.  
+  Set the language variable by adding this line ```LANG=en_US.UTF-8``` and save the file. 
+- To make the console keyboard layout changes visible (from earlier), create /etc/vconsole.conf file and edit it by adding ```KEYMAP=us```.   
+  Make sure to save the file. 
+- Create the hostname file by creating /etc/hostname file and edit it by adding ```JJK```. Then save the file. 
+- Edit etc/hosts by running ```nano etc/hosts``` and edit the file by adding ```127.0.0.1 localhost ::1 localhost 127.0.1.1 JJK``` (save the file).
+- Recreate the initramfs image by running ```mkinitcpio -P```. 
+- Set the passwrod by running ```passwd```. 
+- Install these packages ```pacman -S man-pages texinfo sudo man-db sof-firmware dosfstools amd-ucode wpa_supplicant wireless_tools networkmanager nm-connection-editor     network-manager-applet grub```.
+- To install bootloader run ```grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB```.  
+  Then run these two commands ```grub-mkconfig -o /boot/grub/grub.cfg``` and ```mount /dev/sda1 /mnt```.
+- Now run ```exit``` to exist out of the root and run ```reboot``` to reboot the system. 
+
+- Login: root  
+  Password: ...
