@@ -86,11 +86,31 @@
 - Create the hostname file by creating /etc/hostname file and edit it by adding ```JJK```. Then save the file. 
 - Edit etc/hosts by running ```nano etc/hosts``` and edit the file by adding ```127.0.0.1 localhost ::1 localhost 127.0.1.1 JJK``` (save the file).
 - Recreate the initramfs image by running ```mkinitcpio -P```. 
-- Set the passwrod by running ```passwd```. 
+- Set the password by running ```passwd```. 
 - Install these packages ```pacman -S man-pages texinfo sudo man-db sof-firmware dosfstools amd-ucode wpa_supplicant wireless_tools networkmanager nm-connection-editor     network-manager-applet grub```.
 - To install bootloader run ```grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB```.  
   Then run these two commands ```grub-mkconfig -o /boot/grub/grub.cfg``` and ```mount /dev/sda1 /mnt```.
+  - **Issue**: Had an error when running this command ```grub-mkconfig -o /boot/grub/grub.cfg```, so I tried reinstalling grub using ```grub-install``` and pacman.  
+    After using this command ```grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB``` it started to work. 
 - Now run ```exit``` to exist out of the root and run ```reboot``` to reboot the system. 
+- Input the login (root) and password.
 
-- Login: root  
-  Password: ...
+###Creating user accounts
+- Justin's user account
+  - ```useradd -m -g users -s /bin/bash justin``` creates a user justin.  
+    ```-m``` creates the user's home directory, ```-g``` adds the user to the regular users group, ```-s /bin/bash``` sets the bash as the user's default shell. 
+  - ```passwd david``` creates a password for user justin.
+- Codi's user account
+  - ```useradd -m -g users -s /bin/bash codi``` creates a user codi.
+  - ```passwd codi``` creates a password for codi (GraceHopper1906). 
+- Giving users sudo permission
+  - Run this command ```visudo``` 
+  - Scroll down to ```root ALL=(ALL) ALL```
+  - Underneath it, press insert on keyboard and type ```justin ALL=(ALL) ALL```.  MIGHT BE BRACKETS
+    Below that type ```codi ALL=(ALL) ALL```
+  - Press esc on keyboard and type ```:wq``` to write and quit. 
+
+###Installing desktop environment (KDE) 
+To install a desktop environment, you need a working display server and an appropriate display driver.  
+I will be installing xorg for the display server. 
+- 
