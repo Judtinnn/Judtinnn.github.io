@@ -119,9 +119,21 @@
 
 ### 11. Installing a different shell (zsh)
 - To install zsh package run this command ```pacman -S zsh```
-- 
+- Run ```zsh```
+- Press ```1``` to continue to the main menu
+- Press ```2``` and it will configure the auto-complete system. 
+- Press ```1``` to set it to default options.
+- Press ```0``` to exit and save. 
+- Type ```exit``` to get back to the terminal. 
+- To customize my zsh shell, I will be installing "Oh My Zsh".
+  - To install oh my zsh run this command ```sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"```
+  - Then run ```nano ~/.zshrc```
+  - Scroll down to ```ZSH_THEME="robbyrussell"``` and comment it out using #
+  - Underneath it insert this command ```ZSH_THEME="agnoster"```.
+  - Save and exit by pressing CTRL+X, then Y, then enter.
+- Now change the default shell to zsh ```chsh -s /usr/bin/zsh```.
 
 ### 10. Installing desktop environment (KDE) 
 To install a desktop environment, you need a working display server and an appropriate display driver.  
 I will be installing xorg for the display server. 
-
+- To install xorg run this command ```pacman -S xorg-server xorg-server-utils xorg-xinit```
