@@ -105,18 +105,19 @@
   - ```passwd codi``` creates a password for codi (GraceHopper1906). 
 - Giving users sudo permission
   - Run this command ```visudo```  
-    **Issue:** Error occured when running ```visudo``` command 
+    **Issue:** Error occured when running ```visudo``` command  
     **Error:** ```visudo: no editor found (editor path = /usr/bin/vi)```  
     **Solution:** Do this instead to access visudo 
     - Find the location of your text editor by running this command ```whereis text_editor```.  
       For example, I used nano as my text editor, so I did ```whereis nano``` and the location of it is ```/usr/bin/nano```
     - Then you run this command to access visudo ```EDITOR=location_of_text_editor visudo```.  
-      I did ```EDITOR=/usr/bin/nano visudo```.
-  - Scroll down to ```root ALL=(ALL) ALL```
-  - Underneath it, press insert on keyboard and type ```justin ALL=(ALL) ALL```.  MIGHT BE BRACKETS
-    Below that type ```codi ALL=(ALL) ALL```
-  - Press esc on keyboard and type ```:wq``` to write and quit. 
+      E.g. ```EDITOR=/usr/bin/nano visudo```.
+  - Scroll down to ```root ALL=(ALL:ALL) ALL```
+  - Underneath it, type ```justin ALL=(ALL:ALL) ALL```.  
+    Below that type ```codi ALL=(ALL:ALL) ALL```
+  - To save and exit nano, press ctrl + X, then press Y, then press enter. 
 
 ### 9. Installing desktop environment (KDE) 
 To install a desktop environment, you need a working display server and an appropriate display driver.  
 I will be installing xorg for the display server. 
+
