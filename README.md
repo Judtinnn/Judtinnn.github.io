@@ -104,14 +104,14 @@
   - ```useradd -m -g users -s /bin/bash codi``` creates a user codi.
   - ```passwd codi``` creates a password for codi (GraceHopper1906). 
 - Giving users sudo permission
-  - **Issue:** Error occured when running ```visudo``` command 
-    Error: ```visudo: no editor found (editor path = /usr/bin/vi)```  
-    Solution:  
-    (Only works in bash)
-    - Run this command ```nano .bashr```
-    - Press insert on keyboard and add this line of code in the editor ```export EDITOR=/usr/bin/nano```
-    - Press esc on keyboard and run```:wq``` to save and quit.
-  - Run this command ```visudo``` 
+  - Run this command ```visudo```  
+    **Issue:** Error occured when running ```visudo``` command 
+    **Error:** ```visudo: no editor found (editor path = /usr/bin/vi)```  
+    **Solution:** Do this instead to access visudo 
+    - Find the location of your text editor by running this command ```whereis text_editor```.  
+      For example, I used nano as my text editor, so I did ```whereis nano``` and the location of it is ```/usr/bin/nano```
+    - Then you run this command to access visudo ```EDITOR=location_of_text_editor visudo```.  
+      I did ```EDITOR=/usr/bin/nano visudo```.
   - Scroll down to ```root ALL=(ALL) ALL```
   - Underneath it, press insert on keyboard and type ```justin ALL=(ALL) ALL```.  MIGHT BE BRACKETS
     Below that type ```codi ALL=(ALL) ALL```
