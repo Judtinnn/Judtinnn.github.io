@@ -117,7 +117,22 @@
     Below that type ```codi ALL=(ALL:ALL) ALL```
   - To save and exit nano, press ctrl + X, then press Y, then press enter. 
 
-### 11. Installing a different shell (zsh)
+### 9. Installing desktop environment (KDE) 
+To install a desktop environment, you need a working display server and an appropriate display driver.  
+I will be installing xorg for the display server. 
+- To install xorg run this command ```pacman -S xorg-server xorg-server-utils xorg-xinit```
+- Keep all dependencies to default (press enter) and proceed with the installation (press Y)
+- Then run ```pacman -S xf86-video-intel``` (only works for intel).  
+  If you are using AMD, replace "intel" with "amdgpu".  
+  If you are using Nvidia, replace "intel" with "nouveau".  
+  If you are unsure, you can replace "intel" with "vesa". It will download the very basic package for you. However, it is not recommended to stay with this. 
+- Install appropriate display manager. I will be installing KDE Plasma 5, so the recommended display manager to install is ```pacman -S sddm```
+- Finally to install the desktop environment (KDE plasma 5), run this command ```pacman -S plasma kde-applications```.
+- Keep all the customizations to default (press enter) and proceed with the installation (Y). 
+- Run this command to enable the display manager ```systemctl enable sddm```
+- Reboot to get your new desktop environment, ```reboot```
+
+### 10. Installing a different shell (zsh)
 - To install zsh package run this command ```pacman -S zsh```
 - Run ```zsh```
 - Press ```1``` to continue to the main menu
@@ -132,8 +147,3 @@
   - Underneath it insert this command ```ZSH_THEME="agnoster"```.
   - Save and exit by pressing CTRL+X, then Y, then enter.
 - Now change the default shell to zsh ```chsh -s /usr/bin/zsh```.
-
-### 10. Installing desktop environment (KDE) 
-To install a desktop environment, you need a working display server and an appropriate display driver.  
-I will be installing xorg for the display server. 
-- To install xorg run this command ```pacman -S xorg-server xorg-server-utils xorg-xinit```
