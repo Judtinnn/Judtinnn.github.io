@@ -120,7 +120,10 @@
 ### 9. Installing desktop environment (KDE) 
 To install a desktop environment, you need a working display server and an appropriate display driver.  
 I will be installing xorg for the display server. 
-- To install xorg run this command ```pacman -S xorg-server xorg-server-utils xorg-xinit```
+- **Issue:** Couldn't install any packages using pacman. After few tests, found out that ```ping google.com``` doesn't work,  
+  which means that there is probably an issue with my internet connection.  
+  **Solution:** Ran these two commands ```sudo systemctl disable dhcpcd.service``` and ```sudo systemctl start NetworkManager.service```, and it started working. 
+- To install xorg run this command ```pacman -S xorg xorg-server```
 - Keep all dependencies to default (press enter) and proceed with the installation (press Y)
 - Then run ```pacman -S xf86-video-intel``` (only works for intel).  
   If you are using AMD, replace "intel" with "amdgpu".  
@@ -133,6 +136,7 @@ I will be installing xorg for the display server.
 - Reboot to get your new desktop environment, ```reboot```
 
 ### 10. Installing a different shell (zsh)
+- Issue: Another error with installing packages using pacman. Same error so use the same solution as on "9. Installing desktop environment (KDE)".
 - To install zsh package run this command ```pacman -S zsh```
 - Run ```zsh```
 - Press ```1``` to continue to the main menu
@@ -141,9 +145,12 @@ I will be installing xorg for the display server.
 - Press ```0``` to exit and save. 
 - Type ```exit``` to get back to the terminal. 
 - To customize my zsh shell, I will be installing "Oh My Zsh".
+  - **Issue:** Couldn't install Oh My Zsh because Git was not installed. Use this command to install Git ```pacman -S git```
   - To install oh my zsh run this command ```sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"```
+  - Press Y if it asks to change the default shell to zsh. 
   - Then run ```nano ~/.zshrc```
   - Scroll down to ```ZSH_THEME="robbyrussell"``` and comment it out using #
   - Underneath it insert this command ```ZSH_THEME="agnoster"```.
   - Save and exit by pressing CTRL+X, then Y, then enter.
-- Now change the default shell to zsh ```chsh -s /usr/bin/zsh```.
+- If it didn't ask you earlier to change the default shell to zsh, run this command ```chsh -s /usr/bin/zsh```.
+- Type ```exit``` to get back to the terminal
