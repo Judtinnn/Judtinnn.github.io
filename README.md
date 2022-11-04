@@ -95,7 +95,7 @@
 - Now run ```exit``` to exist out of the root and run ```reboot``` to reboot the system. 
 - Input the login (root) and password.
 
-###Creating user accounts
+### 8. Creating user accounts
 - Justin's user account
   - ```useradd -m -g users -s /bin/bash justin``` creates a user justin.  
     ```-m``` creates the user's home directory, ```-g``` adds the user to the regular users group, ```-s /bin/bash``` sets the bash as the user's default shell. 
@@ -104,13 +104,18 @@
   - ```useradd -m -g users -s /bin/bash codi``` creates a user codi.
   - ```passwd codi``` creates a password for codi (GraceHopper1906). 
 - Giving users sudo permission
+  - **Issue:** Error occured when running ```visudo command```
+    Error: ```visudo: no editor found (editor path = /usr/bin/vi)```
+    Solution: 
+    (Only works in bash)
+    - Run this command ```nano .bashr```
+    - Add this line of code in the editor ```export EDITOR=/usr/bin/nano
   - Run this command ```visudo``` 
   - Scroll down to ```root ALL=(ALL) ALL```
   - Underneath it, press insert on keyboard and type ```justin ALL=(ALL) ALL```.  MIGHT BE BRACKETS
     Below that type ```codi ALL=(ALL) ALL```
   - Press esc on keyboard and type ```:wq``` to write and quit. 
 
-###Installing desktop environment (KDE) 
+### 9. Installing desktop environment (KDE) 
 To install a desktop environment, you need a working display server and an appropriate display driver.  
 I will be installing xorg for the display server. 
-- 
