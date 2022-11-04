@@ -117,7 +117,11 @@
     Below that type ```codi ALL=(ALL:ALL) ALL```
   - To save and exit nano, press ctrl + X, then press Y, then press enter. 
 
-### 9. Installing desktop environment (KDE) 
+### 11. Installing a different shell (zsh)
+- To install zsh package run this command ```pacman -S zsh```
+- 
+
+### 10. Installing desktop environment (KDE) 
 To install a desktop environment, you need a working display server and an appropriate display driver.  
 I will be installing xorg for the display server. 
 
