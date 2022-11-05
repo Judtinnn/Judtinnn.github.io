@@ -154,3 +154,15 @@ I will be installing xorg for the display server.
   - Save and exit by pressing CTRL+X, then Y, then enter.
 - If it didn't ask you earlier to change the default shell to zsh, run this command ```chsh -s /usr/bin/zsh```.
 - Type ```exit``` to get back to the terminal
+
+### 11. Installing ssh and ssh into class gateway
+- If you haven't already, update your package repository with ```pacman -Syu```. 
+- Install the ssh server using ```pacman -S openssh```
+- Check if your open ssh is running using ```systemctl status sshd```.  
+  If it says "inactive" then it is not running. 
+- If it is inactive, then run this command ```systemctl start sshd``` and check if it is active using the previous command.  
+  If you ever need to stop the ssh server, then run this command ```systemctl stop sshd```
+- If you automatically start the ssh server once the system reboots, run this command ```systemctl enable sshd```.  
+  Run this command to stop automatically starting the ssh server ```systemctl disable sshd```
+- Run this to ssh into the class gateway ```ssh -p port user@server-address```.  
+  E.g. ```ssh -p 22 sysadmin@129.244.245.111```
