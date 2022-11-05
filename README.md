@@ -166,3 +166,22 @@ I will be installing xorg for the display server.
   Run this command to stop automatically starting the ssh server ```systemctl disable sshd```
 - Run this to ssh into the class gateway ```ssh -p port user@server-address```.  
   E.g. ```ssh -p 22 sysadmin@129.244.245.111```
+
+### 12. Color coding
+
+### 13. Aliasing
+- Run this command to go edit the zshrc file ```nano ~/.zshrc```
+- ```alias c='clear'``` Shortcut to clear
+- ```alias rb='sudo reboot'```Shortcut to reboot 
+- ```alias ls='ls --color=auto'``` Color code ls output
+- ```alias grep='grep --color=auto'``` Color code grep output
+- ```alias egrep='egrep --color=auto'``` Color code egrep output
+- ```alias ping='ping -c 5'```Stop after sending count ECHO_REQUEST packets
+
+### 14. Booting in GUI
+- Check step 9. Installing desktop environment (KDE).
+
+### Additional customizaton 
+- ```pacman -S firefox``` to install firefox.
+- Installed "oh my zsh" to customize my shell (instructions in 10. Installing a different shell (zsh)).
+- Changed the zsh theme to "agnoster".
