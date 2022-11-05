@@ -116,6 +116,7 @@
   - Underneath it, type ```justin ALL=(ALL:ALL) ALL```.  
     Below that type ```codi ALL=(ALL:ALL) ALL```
   - To save and exit nano, press ctrl + X, then press Y, then press enter. 
+  ![Users with Sudo Priviledge](https://user-images.githubusercontent.com/113713588/200100681-798fce8a-c5c9-4e7c-b62d-c9fdc59ecb78.png)
 
 ### 9. Installing desktop environment (KDE) 
 To install a desktop environment, you need a working display server and an appropriate display driver.  
@@ -134,6 +135,7 @@ I will be installing xorg for the display server.
 - Keep all the customizations to default (press enter) and proceed with the installation (Y). 
 - Run this command to enable the display manager ```systemctl enable sddm```
 - Reboot to get your new desktop environment, ```reboot```
+![KDE Desktop Environment](https://user-images.githubusercontent.com/113713588/200100866-a23f4c34-97f5-422b-8497-cc0f6d94f494.png)
 
 ### 10. Installing a different shell (zsh)
 - Issue: Another error with installing packages using pacman. Same error so use the same solution as on "9. Installing desktop environment (KDE)".
@@ -154,6 +156,7 @@ I will be installing xorg for the display server.
   - Save and exit by pressing CTRL+X, then Y, then enter.
 - If it didn't ask you earlier to change the default shell to zsh, run this command ```chsh -s /usr/bin/zsh```.
 - Type ```exit``` to get back to the terminal
+![ZSH shell with oh my zsh](https://user-images.githubusercontent.com/113713588/200101065-07e1e517-8c2f-4e03-9f65-6c814d4610b8.png)
 
 ### 11. Installing ssh and ssh into class gateway
 - If you haven't already, update your package repository with ```pacman -Syu```. 
@@ -166,8 +169,14 @@ I will be installing xorg for the display server.
   Run this command to stop automatically starting the ssh server ```systemctl disable sshd```
 - Run this to ssh into the class gateway ```ssh -p port user@server-address```.  
   E.g. ```ssh -p 22 sysadmin@129.244.245.111```
+![SSH into class gateway](https://user-images.githubusercontent.com/113713588/200101104-92e4d9a5-62b1-40c5-b440-832f7aeb0d8d.png)
 
 ### 12. Color coding
+- Run this command to go edit the zshrc file ```nano ~/.zshrc```
+- Input these two commands ```autoload -U colors && colors``` and ```PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "```.
+- Red, blue, green, cyan, yellow, magenta, black, and white are basic colors you can use to customize (some copmuters may have more options). 
+![Color coding](https://user-images.githubusercontent.com/113713588/200100615-ee9211f8-6c33-4c20-b67f-070adf943755.png)
+
 
 ### 13. Aliasing
 - Run this command to go edit the zshrc file ```nano ~/.zshrc```
@@ -177,6 +186,7 @@ I will be installing xorg for the display server.
 - ```alias grep='grep --color=auto'``` Color code grep output
 - ```alias egrep='egrep --color=auto'``` Color code egrep output
 - ```alias ping='ping -c 5'```Stop after sending count ECHO_REQUEST packets
+![Aliasing in ZSH](https://user-images.githubusercontent.com/113713588/200101135-dfe4116e-252c-4198-9426-4f4a0a487f32.png)
 
 ### 14. Booting in GUI
 - Check step 9. Installing desktop environment (KDE).
@@ -185,3 +195,4 @@ I will be installing xorg for the display server.
 - ```pacman -S firefox``` to install firefox.
 - Installed "oh my zsh" to customize my shell (instructions in 10. Installing a different shell (zsh)).
 - Changed the zsh theme to "agnoster".
+- Other customizations may have been performed that are not mentioned here. 
