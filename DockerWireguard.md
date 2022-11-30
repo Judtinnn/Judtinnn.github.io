@@ -110,3 +110,13 @@ Within your console run these commands to access the .conf file:
 Copy the content of the .conf file and paste it into a text editor and save it as a .conf file.  
 Install and open Wireguard on your laptop. 
 
+Within the wireguard application on your laptop:
+- Click "Import Tunnel(s) from File" and select the .conf file we created. 
+- Click "Activate"
+
+![image](https://user-images.githubusercontent.com/113713588/204750938-9514f8b9-4cbd-4777-8566-8e46642e376a.png)
+
+
+Go back to the [IPLeak.net](IPLeak.net) website and refresh to get your new ip address. The new IP address should be the same as the Public IPv4 address in droplet.
+
+![image](https://user-images.githubusercontent.com/113713588/204751072-9f25c728-8fba-45c2-af1c-8a2d12d0357a.png)
