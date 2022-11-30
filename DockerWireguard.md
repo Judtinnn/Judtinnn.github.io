@@ -27,10 +27,12 @@ Docker was installed in the previous step when choosing an image. If you didn't 
 
 ### Installing Wireguard
 I will be following this [guide](https://thematrix.dev/setup-wireguard-vpn-server-with-docker/) from theMatrixDev to install Wireguard. SSH into your droplet either using your terminal or droplet console in the "Access" tab from the website. I used the droplet console since it is easier.  
+
 Within your console run these commands:
 - ```mkdir -p ~/wireguard/```
 - ```mkdir -p ~/wireguard/config/```
 - ```nano ~/wireguard/docker-compose.yml```
+
 Within the docker-compose.yml file you created, copy and paste the following content:  
 ```
 version: '3.8'
@@ -63,10 +65,48 @@ services:
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
 ```
+
 In your docker-compose.yml file, you will need to modify some of the content.
 - Set "TZ" to the appropriate timezone of your location. Use this [link](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) to help you find your time zone.  
   For example, I set my TZ to	"America/Chicago". 
 - Set SERVERURL to your Public IPv4 Address on your droplet. Can be found under the "Networking" tab. 
+
 Start Wireguard by running these commands:
+- ```sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose```
+- ```sudo chmod +x /usr/local/bin/docker-compose```
 - ```cd ~/wireguard/```
 - ```sudo docker-compose up -d```
+The server should be build after you see "Creating wireguard   ... done"
+
+### Testing VPN on a mobile device
+Start off by going to this website [IPLeak.net](IPLeak.net) on your mobile device and record your IP address.
+
+![image](https://user-images.githubusercontent.com/113713588/204741061-ad98d153-5e6f-43ee-8cbf-557f3e2d1b03.png)
+
+Install Wireguard application on your mobile device.  
+Then in your console, type in this command ```docker-compose logs -f wireguard``` to build a QR code for a mobile device.
+
+In the Wireguard application:
+- Click the "+" sign and select "Scan From QR Code"
+- Scan the QR Code that is labeled "PEER phone1 QR code".
+- Give your tunnel a name (e.g. "DigitalOceanVPN") and click "Craete Tunnel".
+- Toggle on your VPN.
+
+![image](https://user-images.githubusercontent.com/113713588/204741270-1daa3c9e-5b5c-461a-96f8-39cbf6ab1ed0.png)
+
+Go back to the [IPLeak.net](IPLeak.net) website and refresh to get your new ip address. The new IP address should be the same as the Public IPv4 address in droplet.
+
+![image](https://user-images.githubusercontent.com/113713588/204741339-f8e79a15-5d5e-47fb-a4d1-fa689e5c0a9a.png)
+
+### Testing VPN on a laptop
+Check your IP Address using the [IPLeak.net](IPLeak.net) website. 
+
+![image](https://user-images.githubusercontent.com/113713588/204742069-eb94ec97-3dd6-435e-85f9-a33e219daf35.png)
+
+Within your console run these commands to access the .conf file: 
+- ```cd ~/wireguard/config/peer_pc1```
+- ```sudo nano peer_pc1.conf```
+
+Copy the content of the .conf file and paste it into a text editor and save it as a .conf file.  
+Install and open Wireguard on your laptop. 
+
